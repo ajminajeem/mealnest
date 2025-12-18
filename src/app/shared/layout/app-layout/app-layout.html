@@ -1,0 +1,17 @@
+<div class="flex h-screen bg-gradient-to-br from-slate-50 to-emerald-50 relative overflow-hidden">
+
+  <!-- Geometric background pattern -->
+  <div class="fixed inset-0 pointer-events-none z-0"
+       style="background-image: repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(45, 155, 110, 0.02) 50px, rgba(45, 155, 110, 0.02) 51px), repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(45, 155, 110, 0.02) 50px, rgba(45, 155, 110, 0.02) 51px);">
+  </div>
+
+  <!-- Sidebar Component -->
+  <app-sidebar></app-sidebar>
+
+  <!-- Main Content Area -->
+<main class="flex-1 p-10 relative z-10 animate-fade-in overflow-y-auto">
+  <app-header></app-header>
+  <router-outlet></router-outlet>
+</main>
+
+</div>

@@ -1,0 +1,111 @@
+<div class="mb-10 animate-slideDown">
+    <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+      <a href="#" class="text-emerald-600 hover:text-emerald-700 transition-colors duration-300">Dashboard</a>
+      <i class="fas fa-chevron-right text-xs"></i>
+      <span>Reports & Analytics</span>
+    </div>
+    <h1 class="font-outfit text-4xl font-semibold text-[#1b5e3c] mb-3">Reports & Analytics</h1>
+    <p class="text-base text-gray-500">Generate and download comprehensive reports for your operations</p>
+  </div>
+
+  <!-- Filter Section -->
+  <div class="bg-white p-7 rounded-2xl shadow-sm mb-8 animate-fadeInUp animation-delay-200">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
+      
+      <!-- Site Filter -->
+      <div class="flex flex-col gap-2">
+        <label class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Site</label>
+        <select 
+          [(ngModel)]="selectedSite"
+          class="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl font-sans text-base bg-white cursor-pointer transition-all duration-300 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100">
+          <option *ngFor="let site of sites" [value]="site.value">{{ site.label }}</option>
+        </select>
+      </div>
+
+      <!-- Period Filter -->
+      <div class="flex flex-col gap-2">
+        <label class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Report Period</label>
+        <select 
+          [(ngModel)]="selectedPeriod"
+          class="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl font-sans text-base bg-white cursor-pointer transition-all duration-300 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100">
+          <option *ngFor="let period of periods" [value]="period.value">{{ period.label }}</option>
+        </select>
+      </div>
+
+      <!-- From Date -->
+      <div class="flex flex-col gap-2">
+        <label class="text-xs font-semibold text-gray-500 uppercase tracking-wider">From Date</label>
+        <input 
+          type="date" 
+          [(ngModel)]="fromDate"
+          class="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl font-sans text-base bg-white cursor-pointer transition-all duration-300 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100">
+      </div>
+
+      <!-- To Date -->
+      <div class="flex flex-col gap-2">
+        <label class="text-xs font-semibold text-gray-500 uppercase tracking-wider">To Date</label>
+        <input 
+          type="date" 
+          [(ngModel)]="toDate"
+          class="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl font-sans text-base bg-white cursor-pointer transition-all duration-300 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100">
+      </div>
+
+      <!-- Update Button -->
+      <button 
+        (click)="updateFilters()"
+        class="px-6 py-3.5 rounded-xl border-none font-sans text-base font-semibold cursor-pointer transition-all duration-300 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5">
+        <i class="fas fa-sync"></i>
+        Update
+      </button>
+    </div>
+  </div>
+
+  <!-- Quick Stats -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+    <div 
+      *ngFor="let stat of quickStats; let i = index" 
+      class="bg-white p-6 rounded-xl shadow-sm animate-fadeInUp"
+      [style.animation-delay]="(i * 0.1 + 0.1) + 's'">
+      <div class="w-11 h-11 rounded-lg flex items-center justify-center text-xl mb-3 bg-emerald-50 text-emerald-600">
+        <i [class]="stat.icon"></i>
+      </div>
+      <div class="font-outfit text-3xl font-bold text-gray-800 mb-1.5">{{ stat.value }}</div>
+      <div class="text-sm text-gray-500 font-medium">{{ stat.label }}</div>
+    </div>
+  </div>
+
+  <!-- Reports Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+    <div 
+      *ngFor="let report of reports; let i = index"
+      class="bg-white rounded-2xl p-7 shadow-sm transition-all duration-300 cursor-pointer hover:shadow-lg hover:-translate-y-1 animate-fadeInUp"
+      [style.animation-delay]="(i * 0.1 + 0.3) + 's'">
+      
+      <!-- Icon -->
+      <div 
+        class="w-16 h-16 rounded-xl flex items-center justify-center text-3xl mb-5"
+        [ngClass]="[report.iconBgClass, report.iconColorClass]">
+        <i [class]="report.icon"></i>
+      </div>
+
+      <!-- Title -->
+      <h3 class="font-outfit text-xl font-semibold text-gray-800 mb-2">{{ report.title }}</h3>
+
+      <!-- Description -->
+      <p class="text-sm text-gray-500 mb-5 leading-relaxed">{{ report.description }}</p>
+
+      <!-- Meta -->
+      <div class="flex justify-between items-center pt-4 border-t border-gray-200">
+        <div class="flex flex-col gap-1">
+          <div class="text-xs uppercase tracking-wider text-gray-500 font-semibold">Last Generated</div>
+          <div class="text-lg font-semibold text-gray-700">{{ report.lastGenerated }}</div>
+        </div>
+        <button 
+          (click)="downloadReport(report)"
+          class="px-5 py-2.5 bg-emerald-50 text-emerald-600 border-none rounded-lg font-semibold cursor-pointer transition-all duration-300 flex items-center gap-2 hover:bg-emerald-100 hover:scale-105">
+          <i class="fas fa-download"></i>
+          Export
+        </button>
+      </div>
+    </div>
+  </div>

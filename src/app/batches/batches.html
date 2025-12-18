@@ -1,0 +1,344 @@
+<div class="max-w-5xl mx-4 my-8 relative">
+  <div class="fixed inset-0 pointer-events-none opacity-20">
+    <div
+      class="absolute inset-0"
+      style="
+        background-image: repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 50px,
+            rgba(45, 155, 110, 0.02) 50px,
+            rgba(45, 155, 110, 0.02) 51px
+          ),
+          repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 50px,
+            rgba(45, 155, 110, 0.02) 50px,
+            rgba(45, 155, 110, 0.02) 51px
+          );
+      "
+    ></div>
+  </div>
+<app-breadcrumbs [items]="breadcrumbs"></app-breadcrumbs>
+  <header class="mb-6 lg:mb-10 animate-slide-down">
+    <h1 class="text-3xl sm:text-4xl lg:text-3xl font-bold text-[#1B5E3C] mb-3">Create New Batch</h1>
+    <p class="text-sm sm:text-sm text-gray-600">
+      Set up a new production batch with safety confirmation and label generation
+    </p>
+  </header>
+
+  <div class=" ">
+    <!-- Breadcrumb -->
+<div class="max-w-6xl mx-auto px-4">
+  <ul class="stepper flex justify-between relative w-full">
+    <li
+      *ngFor="let step of steps; let i = index"
+      class="step relative flex flex-col items-center"
+      [class.active]="i + 1 <= currentStep"
+    >
+      <span class="circle flex items-center justify-center font-bold text-lg">{{ i + 1 }}</span>
+      <span class="label mt-2 text-gray-500 text-sm">{{ step.label }}</span>
+    </li>
+  </ul>
+</div>
+
+
+    <!-- Stepper Container -->
+
+
+
+    <div class=" mt-14 ">
+      <div
+        class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-4 w-full max-w-full overflow-hidden"
+      >
+        <!-- ================= STEP 1 ================= -->
+        <div *ngIf="currentStep === 1">
+          <ng-template matStepLabel>Select Dish</ng-template>
+
+          <div class="py-6">
+            <div class="flex items-center gap-3 sm:gap-4 mb-6">
+              <div
+                class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-[#E8F5E9] text-[#4CAF78] flex items-center justify-center shrink-0"
+              >
+                <i class="fas fa-utensils text-sm sm:text-lg"></i>
+              </div>
+              <h2 class="text-lg sm:text-2xl font-bold text-[#1B5E3C]">Select Dish</h2>
+            </div>
+
+            <div
+              class="border-2 border-gray-300 border-[#4CAF78] bg-[#E8F5E9] rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 hover:shadow-md transition-shadow cursor-pointer"
+            >
+              <div
+                class="w-14 h-14 sm:w-20 sm:h-20 rounded-xl bg-gradient-to-br from-[#A8E6CF] to-[#4CAF78] flex items-center justify-center text-white shrink-0"
+              >
+                <i class="fas fa-fish text-xl sm:text-2xl"></i>
+              </div>
+
+              <div class="flex-1">
+                <h3 class="text-sm sm:text-lg text-[#1B5E3C]">Grilled Salmon Fillet</h3>
+                <p class="text-xs sm:text-sm text-gray-600 mt-1">
+                  Business Class • Sydney → Singapore
+                </p>
+                <span
+                  class="inline-block mt-2 px-3 py-1 bg-[#4CAF78] text-white text-xs rounded-md"
+                >
+                  Version 2.3
+                </span>
+              </div>
+
+              <i
+                class="fas fa-check-circle text-2xl sm:text-3xl text-[#4CAF78] self-end sm:self-auto"
+              ></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= STEP 2 ================= -->
+        <div *ngIf="currentStep === 2">
+          <ng-template matStepLabel>Batch Details</ng-template>
+
+          <div class="py-6">
+            <div class="flex items-center gap-3 sm:gap-4 mb-6">
+              <div
+                class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-[#E8F5E9] text-[#4CAF78] flex items-center justify-center shrink-0"
+              >
+                <i class="fas fa-clipboard-list"></i>
+              </div>
+              <h2 class="text-lg sm:text-2xl font-bold text-[#1B5E3C]">Batch Details</h2>
+            </div>
+
+            <div
+              class="bg-gradient-to-r from-[#4CAF78] to-[#2D9B6E] rounded-xl p-4 sm:p-6 text-center text-white mb-6"
+            >
+              <div class="text-xs uppercase tracking-wider opacity-90 mb-1">
+                Auto-Generated Batch ID
+              </div>
+              <div class="text-lg sm:text-3xl font-bold font-mono break-all">
+                {{ batchId }}
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              <div>
+                <label class="text-sm text-gray-700">Production Date *</label>
+                <input
+                  type="date"
+                  [(ngModel)]="productionDate"
+                  class="w-full mt-1 px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400"
+                />
+              </div>
+
+              <div>
+                <label class="text-sm text-gray-700">Label Quantity *</label>
+                <input
+                  type="number"
+                  min="1"
+                  [(ngModel)]="labelQuantity"
+                  class="w-full mt-1 px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-green-400"
+                />
+              </div>
+
+              <div>
+                <label class="text-sm text-gray-700">Production Supervisor</label>
+                <select
+                  [(ngModel)]="selectedSupervisor"
+                  class="w-full mt-1 px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-green-400"
+                >
+                  <option *ngFor="let supervisor of supervisors" [value]="supervisor.value">
+                    {{ supervisor.name }}
+                  </option>
+                </select>
+              </div>
+
+              <div>
+                <label class="text-sm text-gray-700">Production Shift</label>
+                <select
+                  [(ngModel)]="selectedShift"
+                  class="w-full mt-1 px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-green-400"
+                >
+                  <option *ngFor="let shift of shifts" [value]="shift.value">
+                    {{ shift.name }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="text-sm text-gray-700">Production Notes</label>
+                <textarea
+                  rows="4"
+                  [(ngModel)]="notes"
+                  class="w-full mt-1 px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-green-400"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= STEP 3 ================= -->
+        <div *ngIf="currentStep === 3">
+          <ng-template matStepLabel>Safety Check</ng-template>
+
+          <div class="py-6">
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-[#E8F5E9] text-[#4CAF78] flex items-center justify-center"
+              >
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h2 class="text-lg sm:text-2xl font-bold text-[#1B5E3C]">Safety & Compliance</h2>
+            </div>
+            <div
+              class="flex flex-col sm:flex-row gap-3 sm:gap-4 p-4 sm:p-5 bg-[#E8F5E9] border-l-4 border-[#4CAF78] rounded-lg mb-6"
+            >
+              <div
+                class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#4CAF78] text-white flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-info"></i>
+              </div>
+              <div>
+                <h3 class="text-[#1B5E3C] mb-1 text-sm sm:text-base">HACCP Compliance Required</h3>
+                <p class="text-xs sm:text-sm text-gray-700">
+                  Please confirm that all HACCP protocols have been followed for this batch
+                  production, including temperature monitoring, time controls, and sanitation
+                  procedures.
+                </p>
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <div class="flex gap-3 p-3 bg-[#E8F5E9] rounded-xl">
+                <input type="checkbox" [(ngModel)]="safetyChecks['temperature']" />
+                <label class="text-sm">Temperature checks completed</label>
+              </div>
+
+              <div class="flex gap-3 p-3 bg-[#E8F5E9] rounded-xl">
+                <input type="checkbox" [(ngModel)]="safetyChecks['sanitized']" />
+                <label class="text-sm">Equipment sanitized</label>
+              </div>
+
+              <div class="flex gap-3 p-3 bg-[#E8F5E9] rounded-xl">
+                <input type="checkbox" [(ngModel)]="safetyChecks['expiration']" />
+                <label class="text-sm">Ingredients within expiry</label>
+              </div>
+
+              <div class="flex gap-3 p-3 bg-[#E8F5E9] rounded-xl">
+                <input type="checkbox" [(ngModel)]="safetyChecks['allergen']" />
+                <label class="text-sm">Allergen controls applied</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= STEP 4 ================= -->
+        <div *ngIf="currentStep === 4" class="space-y-4">
+          <ng-template matStepLabel>Generate Labels</ng-template>
+          <div class="py-6 sm:py-8">
+            <div class="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <div
+                class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#E8F5E9] text-[#4CAF78] flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-print text-lg sm:text-xl"></i>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold text-[#1B5E3C]">Label Generation</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
+              <!-- Printer Selection -->
+              <div class="flex flex-col">
+                <label class="text-gray-700 mb-1"
+                  >Printer Selection <span class="text-orange-500">*</span></label
+                >
+                <select
+                  [(ngModel)]="selectedPrinter"
+                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
+                >
+                  <option *ngFor="let printer of printers" [value]="printer.value">
+                    {{ printer.name }}
+                  </option>
+                </select>
+              </div>
+              <!-- Label Size -->
+              <div class="flex flex-col">
+                <label class="text-gray-700 mb-1">Label Size</label>
+                <select
+                  [(ngModel)]="selectedLabelSize"
+                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
+                >
+                  <option *ngFor="let size of labelSizes" [value]="size.value">
+                    {{ size.name }}
+                  </option>
+                </select>
+              </div>
+              <!-- QR Code Info -->
+              <div class="col-span-1 sm:col-span-2">
+                <div
+                  class="flex flex-col sm:flex-row gap-3 sm:gap-4 p-4 sm:p-5 bg-[#E8F5E9] border-l-4 border-[#4CAF78] rounded-lg"
+                >
+                  <div
+                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#4CAF78] text-white flex items-center justify-center flex-shrink-0"
+                  >
+                    <i class="fas fa-qrcode text-base sm:text-lg"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-[#1B5E3C] mb-1 text-sm sm:text-base">QR Code Included</h3>
+                    <p class="text-xs sm:text-sm text-gray-700">
+                      Each label will include a unique QR code with full dish details, version info,
+                      batch metadata, and safety instructions for both online and offline scanning.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ================= NAVIGATION ================= -->
+          
+          </div>
+        </div>
+ <div class="flex flex-col sm:flex-row justify-between items-center gap-3 mt-6">
+
+  <!-- LEFT SIDE -->
+  <button
+    (click)="prevStep()"
+    class="w-full sm:w-auto px-5 py-2 bg-gray-200 rounded-xl"
+  >
+    Back
+  </button>
+
+  <!-- RIGHT SIDE BUTTON GROUP -->
+  <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+
+    <!-- SAVE DRAFT (LEFT of Generate) -->
+    <button
+     *ngIf="currentStep === steps.length"
+      class="w-full sm:w-auto px-5 py-2 bg-gray-500 text-white rounded-xl flex items-center justify-center gap-2"
+    >
+      <i class="fas fa-save"></i>
+      Save Draft
+    </button>
+
+    <!-- NEXT -->
+    <button
+      *ngIf="currentStep < steps.length"
+      (click)="nextStep()"
+      class="w-full sm:w-auto px-5 py-2 bg-green-600 text-white rounded-xl"
+    >
+      Next
+    </button>
+
+    <!-- GENERATE LABELS -->
+    <button
+      *ngIf="currentStep === steps.length"
+      (click)="generateLabels()"
+      class="w-full sm:w-auto px-5 py-2 bg-green-600 text-white rounded-xl"
+    >
+      Generate Labels
+    </button>
+
+  </div>
+</div>
+
+        <!-- Navigation Buttons -->
+      </div>
+    </div>
+  </div>
+</div>

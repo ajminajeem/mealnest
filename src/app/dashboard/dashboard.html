@@ -1,0 +1,303 @@
+<!-- Dashboard Section -->
+<section >
+  <!-- Stats Grid Component -->
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
+    <!-- Labels Printed Card -->
+    <div class="bg-white p-7 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
+      <!-- Decorative Background Circle -->
+      <div class="absolute -top-16 -right-16 w-32 h-32 bg-gradient-to-br from-green-100/50 to-transparent rounded-full opacity-50"></div>
+      
+      <!-- Icon -->
+      <div class="w-13 h-13 rounded-xl bg-gradient-to-br from-green-500/10 to-green-600/20 flex items-center justify-center text-2xl text-green-600 mb-4 relative z-10">
+        <i class="fas fa-print"></i>
+      </div>
+      
+      <!-- Value -->
+      <div class="text-3xl font-bold text-green-900 mb-2 relative z-10">18,542</div>
+      
+      <!-- Label -->
+      <div class="text-sm text-gray-500 font-medium mb-2 relative z-10">Labels Printed</div>
+      
+      <!-- Change Badge -->
+      <div class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-semibold bg-green-500/10 text-green-600 relative z-10">
+        <i class="fas fa-arrow-up text-xs"></i>
+        +12% this month
+      </div>
+    </div>
+
+    <!-- Active Batches Card -->
+    <div class="bg-white p-7 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
+      <!-- Decorative Background Circle -->
+      <div class="absolute -top-16 -right-16 w-32 h-32 bg-gradient-to-br from-green-100/50 to-transparent rounded-full opacity-50"></div>
+      
+      <!-- Icon -->
+      <div class="w-13 h-13 rounded-xl bg-gradient-to-br from-green-500/10 to-green-500/20 flex items-center justify-center text-2xl text-green-600 mb-4 relative z-10">
+        <i class="fas fa-layer-group"></i>
+      </div>
+      
+      <!-- Value -->
+      <div class="text-3xl font-bold text-green-900 mb-2 relative z-10">247</div>
+      
+      <!-- Label -->
+      <div class="text-sm text-gray-500 font-medium mb-2 relative z-10">Active Batches</div>
+      
+      <!-- Change Badge -->
+      <div class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-semibold bg-green-500/10 text-green-600 relative z-10">
+        <i class="fas fa-arrow-up text-xs"></i>
+        +8% this week
+      </div>
+    </div>
+
+    <!-- Total Dishes Card -->
+    <div class="bg-white p-7 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
+      <!-- Decorative Background Circle -->
+      <div class="absolute -top-16 -right-16 w-32 h-32 bg-gradient-to-br from-green-100/50 to-transparent rounded-full opacity-50"></div>
+      
+      <!-- Icon -->
+      <div class="w-13 h-13 rounded-xl bg-gradient-to-br from-green-100/20 to-green-200/30 flex items-center justify-center text-2xl text-green-800 mb-4 relative z-10">
+        <i class="fas fa-utensils"></i>
+      </div>
+      
+      <!-- Value -->
+      <div class="text-3xl font-bold text-green-900 mb-2 relative z-10">163</div>
+      
+      <!-- Label -->
+      <div class="text-sm text-gray-500 font-medium mb-2 relative z-10">Total Dishes</div>
+      
+      <!-- Change Badge -->
+      <div class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-semibold bg-green-500/10 text-green-600 relative z-10">
+        <i class="fas fa-arrow-up text-xs"></i>
+        5 new this week
+      </div>
+    </div>
+
+    <!-- Tier Usage Card -->
+    <div class="bg-white p-7 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
+      <!-- Decorative Background Circle -->
+      <div class="absolute -top-16 -right-16 w-32 h-32 bg-gradient-to-br from-orange-100/50 to-transparent rounded-full opacity-50"></div>
+      
+      <!-- Icon -->
+      <div class="w-13 h-13 rounded-xl bg-gradient-to-br from-orange-400/10 to-orange-500/20 flex items-center justify-center text-2xl text-orange-500 mb-4 relative z-10">
+        <i class="fas fa-chart-pie"></i>
+      </div>
+      
+      <!-- Value -->
+      <div class="text-3xl font-bold text-green-900 mb-2 relative z-10">74%</div>
+      
+      <!-- Label -->
+      <div class="text-sm text-gray-500 font-medium mb-2 relative z-10">Tier Usage (50k)</div>
+      
+      <!-- Change Badge -->
+      <div class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-semibold bg-orange-400/10 text-orange-500 relative z-10">
+        <i class="fas fa-exclamation-triangle text-xs"></i>
+        Approaching limit
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Grid: Recent Batches & Quick Actions -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Recent Batches -->
+    <div class="lg:col-span-2 bg-white rounded-2xl p-7 shadow-sm">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-semibold text-green-900">Recent Batches</h2>
+        <a href="#" class="text-green-600 hover:text-green-700 font-semibold text-sm transition-colors">
+          View all →
+        </a>
+      </div>
+      
+      <div class="overflow-x-auto">
+        <!-- Table Header -->
+        <div class="hidden md:grid md:grid-cols-5 gap-4 pb-3 border-b border-gray-200 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+          <div>Dish Name</div>
+          <div>Batch ID</div>
+          <div>Date</div>
+          <div>Labels</div>
+          <div>Status</div>
+        </div>
+
+        <!-- Table Rows -->
+        <div class="divide-y divide-gray-100">
+          <!-- Row 1 -->
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-2 md:gap-4 py-4 hover:bg-green-50 md:hover:-mx-3 md:hover:px-3 rounded-lg transition-all">
+            <div class="font-semibold text-gray-900">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Dish:</span>
+              Grilled Salmon Fillet
+            </div>
+            <div class="font-mono text-sm text-gray-600">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Batch:</span>
+              TAG-20251215-0087
+            </div>
+            <div class="text-gray-700">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Date:</span>
+              15 Dec 2025
+            </div>
+            <div class="text-gray-700">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Labels:</span>
+              245
+            </div>
+            <div>
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-600">Active</span>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-2 md:gap-4 py-4 hover:bg-green-50 md:hover:-mx-3 md:hover:px-3 rounded-lg transition-all">
+            <div class="font-semibold text-gray-900">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Dish:</span>
+              Vegetarian Curry Bowl
+            </div>
+            <div class="font-mono text-sm text-gray-600">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Batch:</span>
+              TAG-20251215-0086
+            </div>
+            <div class="text-gray-700">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Date:</span>
+              15 Dec 2025
+            </div>
+            <div class="text-gray-700">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Labels:</span>
+              180
+            </div>
+            <div>
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-600">Active</span>
+            </div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-2 md:gap-4 py-4 hover:bg-green-50 md:hover:-mx-3 md:hover:px-3 rounded-lg transition-all">
+            <div class="font-semibold text-gray-900">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Dish:</span>
+              Beef Tenderloin
+            </div>
+            <div class="font-mono text-sm text-gray-600">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Batch:</span>
+              TAG-20251214-0085
+            </div>
+            <div class="text-gray-700">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Date:</span>
+              14 Dec 2025
+            </div>
+            <div class="text-gray-700">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Labels:</span>
+              320
+            </div>
+            <div>
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-600">Active</span>
+            </div>
+          </div>
+
+          <!-- Row 4 -->
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-2 md:gap-4 py-4 hover:bg-green-50 md:hover:-mx-3 md:hover:px-3 rounded-lg transition-all">
+            <div class="font-semibold text-gray-900">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Dish:</span>
+              Chicken Caesar Salad
+            </div>
+            <div class="font-mono text-sm text-gray-600">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Batch:</span>
+              TAG-20251214-0084
+            </div>
+            <div class="text-gray-700">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Date:</span>
+              14 Dec 2025
+            </div>
+            <div class="text-gray-700">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Labels:</span>
+              156
+            </div>
+            <div>
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-600">Active</span>
+            </div>
+          </div>
+
+          <!-- Row 5 -->
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-2 md:gap-4 py-4 hover:bg-green-50 md:hover:-mx-3 md:hover:px-3 rounded-lg transition-all">
+            <div class="font-semibold text-gray-900">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Dish:</span>
+              Pasta Primavera
+            </div>
+            <div class="font-mono text-sm text-gray-600">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Batch:</span>
+              TAG-20251213-0083
+            </div>
+            <div class="text-gray-700">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Date:</span>
+              13 Dec 2025
+            </div>
+            <div class="text-gray-700">
+              <span class="md:hidden text-xs text-gray-500 mr-2">Labels:</span>
+              198
+            </div>
+            <div>
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-orange-100 text-orange-500">Archived</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="bg-white rounded-2xl p-7 shadow-sm">
+      <div class="mb-6">
+        <h2 class="text-xl font-semibold text-green-900">Quick Actions</h2>
+      </div>
+      
+      <div class="flex flex-col gap-3">
+        <!-- Action Button 1 -->
+        <button class="flex items-center gap-4 p-5 bg-green-50 hover:bg-green-100 rounded-xl transition-all hover:translate-x-1 text-left w-full">
+          <div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center text-xl text-green-600 flex-shrink-0">
+            <i class="fas fa-plus-circle"></i>
+          </div>
+          <div class="flex-1">
+            <div class="font-semibold text-green-900 mb-1">Create Dish</div>
+            <div class="text-xs text-gray-500">Add a new dish to library</div>
+          </div>
+        </button>
+
+        <!-- Action Button 2 -->
+        <button class="flex items-center gap-4 p-5 bg-green-50 hover:bg-green-100 rounded-xl transition-all hover:translate-x-1 text-left w-full">
+          <div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center text-xl text-green-600 flex-shrink-0">
+            <i class="fas fa-layer-group"></i>
+          </div>
+          <div class="flex-1">
+            <div class="font-semibold text-green-900 mb-1">New Batch</div>
+            <div class="text-xs text-gray-500">Start batch production</div>
+          </div>
+        </button>
+
+        <!-- Action Button 3 -->
+        <button class="flex items-center gap-4 p-5 bg-green-50 hover:bg-green-100 rounded-xl transition-all hover:translate-x-1 text-left w-full">
+          <div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center text-xl text-green-600 flex-shrink-0">
+            <i class="fas fa-print"></i>
+          </div>
+          <div class="flex-1">
+            <div class="font-semibold text-green-900 mb-1">Print Labels</div>
+            <div class="text-xs text-gray-500">Generate ZPL labels</div>
+          </div>
+        </button>
+
+        <!-- Action Button 4 -->
+        <button class="flex items-center gap-4 p-5 bg-green-50 hover:bg-green-100 rounded-xl transition-all hover:translate-x-1 text-left w-full">
+          <div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center text-xl text-green-600 flex-shrink-0">
+            <i class="fas fa-qrcode"></i>
+          </div>
+          <div class="flex-1">
+            <div class="font-semibold text-green-900 mb-1">Scan QR Code</div>
+            <div class="text-xs text-gray-500">View dish details</div>
+          </div>
+        </button>
+
+        <!-- Action Button 5 -->
+        <button class="flex items-center gap-4 p-5 bg-green-50 hover:bg-green-100 rounded-xl transition-all hover:translate-x-1 text-left w-full">
+          <div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center text-xl text-green-600 flex-shrink-0">
+            <i class="fas fa-file-download"></i>
+          </div>
+          <div class="flex-1">
+            <div class="font-semibold text-green-900 mb-1">Export Data</div>
+            <div class="text-xs text-gray-500">Download reports</div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
