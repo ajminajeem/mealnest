@@ -4,6 +4,7 @@ import { Dashboard } from "../../dashboard/dashboard";
 import { Batches } from "../../batches/batches";
 import { Dishes } from "../../dishes/dishes";
 import { Reports } from "../../reports/reports";
+import { UserManagement } from "../../user-management/user-management";
 // import {ForgotPassword} from "./forgot-password/forgot-password"
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -21,5 +22,9 @@ export const DASHBOARD_ROUTES: Routes = [
   {
     path: 'reprorts',
     component: Reports
-  }
+  },
+    {
+        path: 'users',
+        component: UserManagement
+    }
 ];
