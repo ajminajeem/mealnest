@@ -1,0 +1,71 @@
+<div class="bg-white rounded-xl px-10 py-8">
+  <!-- Header -->
+  <div class="mb-8">
+    <div class="flex items-center gap-3">
+      <span class="w-9 h-9 rounded-xl bg-green-100 flex items-center justify-center">
+        <i class="fas fa-toggle-on text-2xl"></i>
+      </span>
+
+      <h2 class="text-2xl font-semibold text-green-900">Features & Permissions</h2>
+    </div>
+
+    <p class="text-sm text-gray-400 mt-2 ml-12">
+      Enable or disable specific features for your site
+    </p>
+  </div>
+
+  <hr class="border-gray-200 mb-6" />
+
+  <!-- Feature Rows -->
+<div
+  *ngFor="let feature of features; let last = last"
+  class="flex items-center justify-between py-6 border-gray-200 w-full"
+  [ngClass]="{ 'border-b mb-2': !last }">
+
+  <!-- Left content -->
+  <div class="max-w-[70%]">
+    <div class="text-base font-semibold text-gray-800">
+      {{ feature.label }}
+    </div>
+    <div class="text-sm text-gray-400 mt-1">
+      {{ feature.description }}
+    </div>
+  </div>
+
+  <!-- Tailwind toggle (right aligned) -->
+  <label class="inline-flex relative items-center cursor-pointer shrink-0">
+    <input
+      type="checkbox"
+      [(ngModel)]="feature.enabled"
+      class="sr-only peer"
+    />
+    <div
+      class="w-14 h-8 bg-gray-200 rounded-full
+             peer-checked:bg-green-500
+             transition-colors duration-300
+             relative
+             after:content-[''] after:absolute after:top-[2px] after:left-[2px]
+             after:bg-white after:rounded-full after:h-6 after:w-6
+             after:transition-all peer-checked:after:translate-x-full">
+    </div>
+  </label>
+
+</div>
+  <hr class="border-gray-200 mb-6" />
+    <div
+    class="flex justify-end gap-3 mt-7 pt-7 border-t-2 border-gray-100">
+
+ 
+
+    <button
+      (click)="saveSettings()"
+      class="px-7 py-3 rounded-xl font-semibold text-white flex items-center gap-2
+             bg-gradient-to-br from-green-500 to-green-700 shadow-md
+             hover:shadow-lg hover:-translate-y-0.5 transition">
+      <i class="fas fa-save"></i>
+      Save Changes
+    </button>
+
+  </div>
+
+</div>

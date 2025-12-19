@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +22,7 @@ interface NavGroup {
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule,FormsModule],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
 })
@@ -41,7 +42,7 @@ export class Sidebar {
       items: [
         { icon: 'fas fa-building', label: 'Sites', route: '/sites' },
         { icon: 'fas fa-users', label: 'Users & Roles', route: '/users' },
-        { icon: 'fas fa-qrcode', label: 'QR Codes', route: '/qr-codes' }
+        { icon: 'fas fa-qrcode', label: 'QR Codes', route: '/qr-code-view' }
       ]
     },
     {
@@ -51,7 +52,17 @@ export class Sidebar {
         { icon: 'fas fa-chart-bar', label: 'Usage Reports', route: '/usage-reports' },
         { icon: 'fas fa-history', label: 'User Activity', route: '/user-activity' }
       ]
-    }
+    },
+    
+    {
+      title: 'General',
+      items: [
+        { icon: 'fas fa-file-alt', label: 'Site Configuration', route: '/site-configuration' },
+        { icon: 'fas fa-print', label: 'Printer Settings', route: '/printer-settings' },
+        { icon: 'fas fa-bell', label: 'Feature Configuration', route: '/feature-configuration' }
+      ]
+    },
+
   ];
 
   userInfo = {

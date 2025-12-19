@@ -5,6 +5,10 @@ import { Batches } from "../../batches/batches";
 import { Dishes } from "../../dishes/dishes";
 import { Reports } from "../../reports/reports";
 import { UserManagement } from "../../user-management/user-management";
+import { Siteconfigeration } from "../../siteconfigeration/siteconfigeration";
+import { PrinterSettings } from "../../general/printer-settings/printer-settings";
+import { FeatureConfigeration } from "../../general/feature-configeration/feature-configeration";
+import { QrCodeView } from "../../general/qr-code-view/qr-code-view";
 // import {ForgotPassword} from "./forgot-password/forgot-password"
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -26,5 +30,21 @@ export const DASHBOARD_ROUTES: Routes = [
     {
         path: 'users',
         component: UserManagement
+    },
+    {
+      path: 'site-configuration',
+      component: Siteconfigeration
+    },
+    {
+      path: 'printer-settings',
+      component: PrinterSettings
+    },
+    {
+      path: 'feature-configuration',
+      component: FeatureConfigeration
+    },
+    {
+      path: 'qr-code-view',
+      component: QrCodeView
     }
 ];
