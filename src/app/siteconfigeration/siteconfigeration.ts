@@ -4,9 +4,10 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 
 @Component({
   selector: 'app-siteconfigeration',
-  imports:  [CommonModule],
+  standalone: true, // <-- must be standalone
+  imports: [CommonModule, ReactiveFormsModule], // add ReactiveFormsModule here
   templateUrl: './siteconfigeration.html',
-  styleUrl: './siteconfigeration.css',
+  styleUrls: ['./siteconfigeration.css'],
 })
 export class Siteconfigeration {
  form: FormGroup;

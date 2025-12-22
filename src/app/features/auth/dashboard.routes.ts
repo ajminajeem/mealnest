@@ -9,6 +9,8 @@ import { Siteconfigeration } from "../../siteconfigeration/siteconfigeration";
 import { PrinterSettings } from "../../general/printer-settings/printer-settings";
 import { FeatureConfigeration } from "../../general/feature-configeration/feature-configeration";
 import { QrCodeView } from "../../general/qr-code-view/qr-code-view";
+import { BatchDetails } from "../../batch-details/batch-details";
+import { PrintLabels } from "../../print-labels/print-labels";
 // import {ForgotPassword} from "./forgot-password/forgot-password"
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -46,5 +48,13 @@ export const DASHBOARD_ROUTES: Routes = [
     {
       path: 'qr-code-view',
       component: QrCodeView
+    },
+    {
+      path: 'batch-details',
+      component: BatchDetails
+    },
+    {
+      path: 'print-labels',
+      component: PrintLabels
     }
 ];

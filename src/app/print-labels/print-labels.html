@@ -1,0 +1,222 @@
+ <div >
+      <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="mb-6 sm:mb-8">
+     <app-breadcrumbs [items]="breadcrumbs"></app-breadcrumbs>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-emerald-900 mb-2">Print Labels</h1>
+          <p class="text-gray-600 text-sm sm:text-base">Generate ZPL labels with QR codes for batch tracking</p>
+        </div>
+
+        <div class="grid grid-cols-12 gap-6">
+          <!-- Label Preview Section -->
+          <div class="col-span-12 lg:col-span-8">
+            <div class="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
+              <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-5 border-b-2 border-gray-200">
+                <h2 class="text-xl font-semibold text-emerald-900">Label Preview</h2>
+                <div class="flex gap-2">
+                  <button
+                    *ngFor="let size of sizes"
+                    (click)="selectedSize = size"
+                    [class.bg-emerald-600]="selectedSize === size"
+                    [class.text-white]="selectedSize === size"
+                    [class.shadow-md]="selectedSize === size"
+                    [class.bg-white]="selectedSize !== size"
+                    [class.border-2]="selectedSize !== size"
+                    [class.border-gray-200]="selectedSize !== size"
+                    [class.text-gray-700]="selectedSize !== size"
+                    class="px-4 py-2 rounded-lg text-sm font-semibold transition-all hover:border-emerald-600"
+                  >
+                    {{ size }}
+                  </button>
+                </div>
+              </div>
+
+              <!-- Label Mockup with Dynamic Data -->
+              <div class="border-3 border-gray-200 rounded-lg p-6 sm:p-8 bg-white shadow-md">
+                <div class="grid md:grid-cols-[1fr,auto] gap-6">
+                  <div class="space-y-4">
+                    <div class="w-20 h-10 bg-light-green rounded-lg flex items-center justify-center text-forest-green font-bold text-xs">
+                      {{ currentBatch?.logo || 'LOGO' }}
+                    </div>
+
+                    <h3 class="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight">
+                      {{ currentBatch?.name || 'Select a batch' }}
+                    </h3>
+
+                    <div class="flex flex-wrap gap-2" *ngIf="currentBatch">
+                      <span 
+                        *ngFor="let tag of currentBatch.tags" 
+                        class="px-3 py-1 bg-light-green text-forest-green rounded-md text-xs font-semibold"
+                      >
+                        {{ tag }}
+                      </span>
+                    </div>
+
+                    <div class="space-y-2 pt-3" *ngIf="currentBatch">
+                      <div class="flex justify-between text-sm">
+                        <span class="text-gray-600 font-medium">Batch ID:</span>
+                        <span class="font-mono font-semibold">{{ currentBatch.id }}</span>
+                      </div>
+                      <div class="flex justify-between text-sm">
+                        <span class="text-gray-600 font-medium">Production:</span>
+                        <span class="font-mono font-semibold">{{ currentBatch.productionDate }}</span>
+                      </div>
+                      <div class="flex justify-between text-sm">
+                        <span class="text-gray-600 font-medium">Version:</span>
+                        <span class="font-mono font-semibold">{{ currentBatch.version }}</span>
+                      </div>
+                      <div class="flex justify-between text-sm">
+                        <span class="text-gray-600 font-medium">Site:</span>
+                        <span class="font-mono font-semibold">{{ currentBatch.site }}</span>
+                      </div>
+                    </div>
+
+                    <div class="pt-4 mt-4 border-t-2 border-gray-200 text-xs text-gray-600 space-y-1" *ngIf="currentBatch">
+                      <div><strong>Reheat:</strong> {{ currentBatch.reheatInstructions }}</div>
+                      <div><strong>Allergens:</strong> {{ currentBatch.allergens.join(', ') }}</div>
+                    </div>
+                  </div>
+
+                  <div class="flex justify-center md:justify-end">
+                    <div class="w-32 h-32 sm:w-36 sm:h-36 bg-gray-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <div class="w-28 h-28 sm:w-32 sm:h-32 bg-white rounded flex items-center justify-center">
+                          <i class="fas fa-qrcode text-[50px]"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Settings Section -->
+          <div class="col-span-12 lg:col-span-4">
+            <!-- Batch Information -->
+            <div class="bg-white rounded-2xl shadow-md p-6">
+              <h3 class="text-lg font-bold text-forest-green mb-5 flex items-center gap-3">
+                <div class="w-8 h-8 bg-light-green text-forest-green rounded-lg flex items-center justify-center">
+                  <i class="fas fa-layer-group"></i>
+                </div>
+                Batch Information
+              </h3>
+
+              <div class="mb-4">
+                <label class="block text-sm font-semibold text-gray-900 mb-2">Selected Batch</label>
+                <select 
+                  [(ngModel)]="selectedBatchId"
+                  (ngModelChange)="onBatchChange()"
+                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-emerald-600 focus:ring-4 focus:ring-light-green transition-all"
+                >
+                  <option *ngFor="let batch of batches" [value]="batch.id">
+                    {{ batch.id }} - {{ batch.name }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="p-4 bg-light-green border-l-4 border-emerald-600 rounded-lg text-sm" *ngIf="currentBatch">
+                <div class="font-semibold text-forest-green mb-1">Batch Details</div>
+                <div class="text-gray-700 space-y-0.5">
+                  <div>Production Date: {{ formatDate(currentBatch.productionDate) }}</div>
+                  <div>Supervisor: {{ currentBatch.supervisor }}</div>
+                  <div>Dish Version: {{ currentBatch.version }}</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Print Settings -->
+            <div class="bg-white rounded-2xl shadow-md p-6 mt-6">
+              <h3 class="text-lg font-semibold text-forest-green mb-5 flex items-center gap-3">
+                <div class="w-8 h-8 bg-light-green text-forest-greenrounded-lg flex items-center justify-center">
+                  <i class="fas fa-print"></i>
+                </div>
+                Print Settings
+              </h3>
+
+              <div class="mb-4">
+                <label class="block text-sm font-semibold text-gray-900 mb-2">Printer</label>
+                <select 
+                  [(ngModel)]="selectedPrinterId"
+                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-emerald-600 focus:ring-4 focus:ring-light-green transition-all"
+                >
+                  <option *ngFor="let printer of printers" [value]="printer.id">
+                    {{ printer.name }} - {{ printer.location }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="mb-5">
+                <label class="block text-sm font-semibold text-gray-900 mb-2">Label Quantity</label>
+                <div class="flex items-center gap-3">
+                  <button
+                    (click)="decreaseQuantity()"
+                    class="w-10 h-10 bg-light-green text-forest-green rounded-lg font-semibold hover:bg-emerald-600 hover:text-white transition-all"
+                  >
+                  -
+                  </button>
+                  <input
+                    type="number"
+                    [(ngModel)]="quantity"
+                    (ngModelChange)="validateQuantity()"
+                    min="1"
+                    class="flex-1 text-center px-4 py-3 border-2 border-gray-200 rounded-xl font-semibold text-lg focus:outline-none focus:border-emerald-600 focus:ring-4 focus:ring-light-green transition-all"
+                  />
+                  <button
+                    (click)="increaseQuantity()"
+                    class="w-10 h-10 bg-light-green text-forest-green rounded-lg font-semibold hover:bg-emerald-600 hover:text-white transition-all"
+                  >
+                   +
+                  </button>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3 mb-5">
+                <div class="p-4 bg-gray-50 rounded-xl text-center">
+                  <div class="text-2xl font-bold text-emerald-600 mb-1">{{ quantity }}</div>
+                  <div class="text-xs text-gray-600 font-semibold uppercase tracking-wide">Labels to Print</div>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-xl text-center">
+                  <div class="text-2xl font-bold text-emerald-600 mb-1">{{ printTier.percentage }}%</div>
+                  <div class="text-xs text-gray-600 font-semibold uppercase tracking-wide">Tier Usage</div>
+                </div>
+              </div>
+
+              <div class="p-4 bg-light-green border-l-4 border-emerald-600 rounded-lg text-sm">
+                <div class="font-semibold text-emerald-900 mb-1">Print Tier</div>
+                <div class="text-gray-700 space-y-0.5">
+                  <div>{{ printTier.used | number }} of {{ printTier.total | number }} labels used this year</div>
+                  <div>{{ printTier.total - printTier.used | number }} labels remaining</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="bg-white rounded-2xl shadow-md p-6 space-y-3 mt-6">
+              <button 
+                (click)="downloadPDF()"
+                class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl font-semibold text-gray-900 hover:bg-emerald-50 hover:border-emerald-600 transition-all flex items-center justify-center gap-2"
+              >
+              <i class="fas fa-file-pdf"></i>
+                Download PDF Preview
+              </button>
+              <button 
+                (click)="exportZPL()"
+                class="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl font-semibold text-gray-900 hover:bg-emerald-50 hover:border-emerald-600 transition-all flex items-center justify-center gap-2"
+              >
+                <i class="fas fa-code"></i>
+                Export ZPL Code
+              </button>
+              <button 
+                (click)="printLabels()"
+                [disabled]="!currentBatch"
+                [class.opacity-50]="!currentBatch"
+                [class.cursor-not-allowed]="!currentBatch"
+                class="w-full px-4 py-4 bg-gradient-to-r from-emerald-600 to-green-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
+              >
+                 <i class="fas fa-print"></i>
+                Print Labels
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

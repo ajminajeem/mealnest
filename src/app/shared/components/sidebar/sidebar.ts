@@ -2,6 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+
 
 
 
@@ -22,7 +28,7 @@ interface NavGroup {
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterModule,FormsModule],
+  imports: [CommonModule, RouterModule,FormsModule, MatSidenavModule, MatToolbarModule, MatIconModule, MatListModule, MatButtonModule],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
 })
@@ -33,7 +39,7 @@ export class Sidebar {
       items: [
         { icon: 'fas fa-chart-line', label: 'Dashboard', route: '/dashboard' },
         { icon: 'fas fa-utensils', label: 'Dishes', route: '/dishes' },
-        { icon: 'fas fa-layer-group', label: 'Batches', route: '/batches' },
+        { icon: 'fas fa-layer-group', label: 'Batches', route: '/batch-details' },
         { icon: 'fas fa-print', label: 'Print Labels', route: '/print-labels' }
       ]
     },

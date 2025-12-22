@@ -1,15 +1,42 @@
 @import "tailwindcss";
-:root {
+@use '@angular/material' as mat;
+@theme {
   --primary-green: #2D9B6E;
-  --light-green: #E8F5E9;
+  --color-light-green: #E8F5E9;
   --mint-green: #A8E6CF;
-  --sage-green: #4CAF78;
-  --forest-green: #1B5E3C;
+  --color-sage-green: #4CAF78;
+   --color-primary: #1B5E3C;
+     --color-forest-green: #1B5E3C;
   --white: #FFFFFF;
   --off-white: #F8FBF9;
   --charcoal: #2C3E3F;
   --gray-light: #E0E7E5;
   --gray-medium: #9EADA9;
+}
+@layer utilities {
+  .bg-theme-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--mint-green),
+      var(--color-sage-green)
+    );
+  }
+@layer utilities {
+  .bg-brand-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--color-sage-green),
+      var(--primary-green)
+    );
+  }
+}
+
+  .text-theme-primary {
+    color: var(--color-primary);
+  }
+}
+.nav-link {
+  @apply px-4 py-2 text-gray-700 hover:text-emerald-700;
 }
 /* Apply font globally */
 body {
@@ -32,3 +59,6 @@ body::before {
         }
 /* html, body { height: 100%; } */
 /* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'DM Sans', sans-serif; }
