@@ -40,7 +40,8 @@ export class Sidebar {
         { icon: 'fas fa-chart-line', label: 'Dashboard', route: '/dashboard' },
         { icon: 'fas fa-utensils', label: 'Dishes', route: '/dishes' },
         { icon: 'fas fa-layer-group', label: 'Batches', route: '/batch-details' },
-        { icon: 'fas fa-print', label: 'Print Labels', route: '/print-labels' }
+        { icon: 'fas fa-print', label: 'Print Labels', route: '/print-labels' },
+        { icon: 'fas fa-print', label: 'Print Counter', route: '/print-counter' }
       ]
     },
     {
@@ -48,7 +49,8 @@ export class Sidebar {
       items: [
         { icon: 'fas fa-building', label: 'Sites', route: '/sites' },
         { icon: 'fas fa-users', label: 'Users & Roles', route: '/users' },
-        { icon: 'fas fa-qrcode', label: 'QR Codes', route: '/qr-code-view' }
+        { icon: 'fas fa-qrcode', label: 'QR Codes', route: '/qr-code-view' },
+        { icon: 'fas fa-history', label: 'Version History', route: '/version-history' }
       ]
     },
     {

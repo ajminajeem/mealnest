@@ -11,6 +11,8 @@ import { FeatureConfigeration } from "../../general/feature-configeration/featur
 import { QrCodeView } from "../../general/qr-code-view/qr-code-view";
 import { BatchDetails } from "../../batch-details/batch-details";
 import { PrintLabels } from "../../print-labels/print-labels";
+import { PrintCounter } from "../../print-counter/print-counter";
+import { VersionHistory } from "../../version-history/version-history";
 // import {ForgotPassword} from "./forgot-password/forgot-password"
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -56,5 +58,13 @@ export const DASHBOARD_ROUTES: Routes = [
     {
       path: 'print-labels',
       component: PrintLabels
-    }
+    },
+      {
+        path: 'print-counter',
+        component: PrintCounter
+      },
+      {
+        path: 'version-history',
+        component: VersionHistory
+      }
 ];

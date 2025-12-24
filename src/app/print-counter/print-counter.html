@@ -1,0 +1,154 @@
+
+  <div >
+    
+    <!-- Breadcrumb -->
+    <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+      <a href="#" class="text-emerald-600 hover:text-emerald-700">Dashboard</a>
+      <i class="pi pi-chevron-right text-xs"></i>
+      <span>Print Counter</span>
+    </div>
+
+    <!-- Header -->
+    <div class="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div>
+        <h1 class="text-3xl md:text-5xl font-semibold text-gray-800 mb-2">
+          Print Counter Dashboard
+        </h1>
+        <p class="text-gray-500">Monitor label printing usage and tier limits across all sites</p>
+      </div>
+      <!-- Optional: Add update button for testing -->
+      <button 
+        (click)="updateData()"
+        class="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors flex items-center gap-2"
+      >
+        <i class="pi pi-refresh"></i>
+        <span class="hidden md:inline">Simulate Update</span>
+      </button>
+    </div>
+
+    <!-- Enterprise Tier Overview -->
+    <div class="tier-overview bg-brand-gradient rounded-2xl p-6 md:p-10 text-white mb-8 shadow-xl">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-semibold mb-2">Enterprise Print Tier</h2>
+          <div class="text-emerald-100">{{ enterpriseTier.totalLimit | number }} labels per year across all sites</div>
+        </div>
+        <div class="bg-[#FDF9F733] backdrop-blur-sm px-5 py-2.5 rounded-xl text-sm font-semibold inline-block">
+          <i class="pi pi-building mr-2"></i>
+          DNATA Enterprise
+        </div>
+      </div>
+
+      <!-- PrimeNG Progress Bar -->
+      <div class="mb-6">
+<p-progressBar 
+  [value]="enterpriseTier.usagePercentage"
+  [showValue]="false"
+  styleClass="custom-progressbar">
+  <ng-template pTemplate="value">
+    {{ enterpriseTier.usagePercentage }}%used
+  </ng-template>
+</p-progressBar>
+
+
+
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold mb-1">{{ enterpriseTier.totalPrinted | number }}</div>
+          <div class="text-sm text-emerald-100">Labels Printed</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold mb-1">{{ enterpriseTier.totalRemaining | number }}</div>
+          <div class="text-sm text-emerald-100">Labels Remaining</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold mb-1">{{ enterpriseTier.daysUntilReset }} days</div>
+          <div class="text-sm text-emerald-100">Until Reset</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold mb-1">{{ enterpriseTier.avgDailyUsage | number }}/day</div>
+          <div class="text-sm text-emerald-100">Avg Daily Usage</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alerts -->
+    <div class="grid md:grid-cols-2 gap-5 mb-8" *ngIf="alerts.length > 0">
+      <div 
+        *ngFor="let alert of alerts; let i = index"
+        [ngClass]="[getAlertBgClass(alert.type), 'border-2', getAlertBorderClass(alert.type)]"
+        class="rounded-2xl p-6 flex gap-4"
+      >
+        <div [ngClass]="getAlertIconClass(alert.type)" class="text-white w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
+          <i [class]="'pi ' + alert.icon + ' text-xl'"></i>
+        </div>
+        <div class="flex-1">
+          <div [ngClass]="getAlertTitleClass(alert.type)" class="font-semibold mb-1">{{ alert.title }}</div>
+          <div class="text-sm text-gray-700">{{ alert.message }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sites Section -->
+    <div>
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl md:text-3xl font-semibold text-gray-800">Site Breakdown</h2>
+        <span class="text-gray-500 text-sm">{{ sites.length }} Sites</span>
+      </div>
+
+      <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+        <div 
+          *ngFor="let site of sites"
+          class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+        >
+          <div class="flex justify-between items-start mb-5">
+            <div>
+              <div class="font-semibold text-lg text-gray-800 mb-1">{{ site.name }}</div>
+              <div class="text-xs text-gray-400 font-mono">{{ site.id }}</div>
+            </div>
+            <div [ngClass]="getStatusClass(site.status!)" class="px-3 py-1.5 rounded-lg text-xs font-semibold">
+              <i class="pi pi-exclamation-circle mr-1"></i>
+              {{ getPercentage(site) }}%
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-gray-500">{{ site.limit | number }} label tier</span>
+              <span class="font-semibold text-gray-700">
+                {{ site.printed | number }} / {{ site.limit | number }}
+              </span>
+            </div>
+            
+            <!-- PrimeNG Progress Bar for Sites -->
+   <p-progressBar
+  [value]="getPercentage(site)"
+  [showValue]="false"
+  [style.height.px]="9"
+  [ngClass]="'site-progress-' + site.status">
+</p-progressBar>
+
+
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-gray-50 rounded-lg p-3 text-center">
+              <div class="text-xl font-bold text-emerald-600 mb-1">
+                {{ getRemaining(site) | number }}
+              </div>
+              <div class="text-xs text-gray-500 uppercase tracking-wide">Remaining</div>
+            </div>
+            <div class="bg-gray-50 rounded-lg p-3 text-center">
+              <div class="text-xl font-bold text-emerald-600 mb-1">
+                {{ site.avgDaily | number }}/day
+              </div>
+              <div class="text-xs text-gray-500 uppercase tracking-wide">Avg Usage</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

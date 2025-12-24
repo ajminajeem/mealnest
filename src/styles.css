@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "primeicons/primeicons.css";
 @use '@angular/material' as mat;
 @theme {
   --primary-green: #2D9B6E;
@@ -38,12 +39,64 @@
 .nav-link {
   @apply px-4 py-2 text-gray-700 hover:text-emerald-700;
 }
+.status-good {
+  @apply text-emerald-600 bg-emerald-50;
+}
+
+.status-warning {
+  @apply text-orange-500 bg-orange-50;
+}
+
+.status-critical {
+  @apply text-red-600 bg-red-50;
+}
+/* ProgressBar track (background) */
+.custom-progressbar {
+  height: 8px;
+  border-radius: 6px;
+  background-color: #4CAF78 !important; /* green track */
+  overflow: hidden;
+  position: relative;
+}
+
+/* Filled bar */
+.custom-progressbar .p-progressbar-value {
+  background-color: #FFFFFF; /* white fill */
+  border-radius: 6px;
+  transition: width 0.4s ease-in-out;
+  position: relative; /* needed for absolute label */
+}
+
+/* Label at the right end of filled bar */
+.custom-progressbar .p-progressbar-label {
+  position: absolute;
+  right: 4px;            /* small gap from right edge of filled bar */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4CAF78;        /* text color */
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;    /* prevent wrapping */
+}
+
 /* Apply font globally */
 body {
   font-family: 'DM Sans', sans-serif;
   background: linear-gradient(135deg, var(--off-white) 0%, var(--light-green) 100%);
             color: var(--charcoal);
 }
+.site-progress-critical.p-progressbar .p-progressbar-value {
+  background-color: #ef4444;
+}
+
+.site-progress-warning.p-progressbar .p-progressbar-value {
+  background-color: #f97316;
+}
+
+.site-progress-good.p-progressbar .p-progressbar-value {
+  background-color: #10b981;
+}
+
 body::before {
             content: '';
             position: fixed;
