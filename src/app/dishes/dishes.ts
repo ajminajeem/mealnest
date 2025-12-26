@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Breadcrumbs } from '../shared/components/breadcrumbs/breadcrumbs';
 interface Dish {
@@ -23,7 +24,7 @@ interface DishTag {
 @Component({
   selector: 'app-dishes',
   standalone: true,
-  imports: [CommonModule, FormsModule,Breadcrumbs],
+  imports: [CommonModule, FormsModule, RouterModule, Breadcrumbs],
   templateUrl: './dishes.html',
   styleUrl: './dishes.css',
 })

@@ -1,0 +1,383 @@
+ <div class="min-h-screen bg-gradient-to-br from-gray-50 to-green-50 p-4 md:p-8 lg:p-10">
+      <!-- Background Pattern -->
+      <div class="fixed inset-0 opacity-30 pointer-events-none">
+        <div class="absolute inset-0" [style.background-image]="'repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(45, 155, 110, 0.02) 50px, rgba(45, 155, 110, 0.02) 51px), repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(45, 155, 110, 0.02) 50px, rgba(45, 155, 110, 0.02) 51px)'"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Header -->
+        <header class="mb-8 animate-fade-in">
+          <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+            <a href="#" class="text-green-600 hover:text-green-700 transition-colors">Dashboard</a>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+            <a href="#" class="text-green-600 hover:text-green-700 transition-colors">Dishes</a>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+            <span>Create New Dish</span>
+          </div>
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-green-900 mb-2">
+            Universal Dish Builder
+          </h1>
+          <p class="text-gray-600">Create a new dish with full compliance and airline metadata</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Main Form - 2 columns -->
+          <div class="lg:col-span-2 space-y-6">
+            
+            <!-- Basic Information -->
+            <div class="bg-white rounded-2xl shadow-sm p-6 md:p-8">
+              <div class="flex items-center gap-3 mb-6 pb-5 border-b-2 border-gray-100">
+                <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
+                  <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                </div>
+                <h2 class="text-xl font-semibold text-green-900">Basic Information</h2>
+              </div>
+
+              <div class="space-y-5">
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-2">
+                    Dish Name <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    [(ngModel)]="formData.dishName"
+                    placeholder="Enter dish name"
+                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-2">Description</label>
+                  <textarea
+                    [(ngModel)]="formData.description"
+                    placeholder="Describe the dish..."
+                    rows="3"
+                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none resize-none"
+                  ></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                      Meal Type <span class="text-red-500">*</span>
+                    </label>
+                    <select
+                      [(ngModel)]="formData.mealType"
+                      class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none"
+                    >
+                      <option value="">Select meal type</option>
+                      <option value="breakfast">Breakfast</option>
+                      <option value="lunch">Lunch</option>
+                      <option value="dinner">Dinner</option>
+                      <option value="snack">Snack</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Service Class</label>
+                    <select
+                      [(ngModel)]="formData.serviceClass"
+                      class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none"
+                    >
+                      <option value="">Select class</option>
+                      <option value="economy">Economy</option>
+                      <option value="premium">Premium Economy</option>
+                      <option value="business">Business</option>
+                      <option value="first">First</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-2">Dish Image</label>
+                  <div class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-green-50 hover:bg-green-100 hover:border-green-400 transition-all cursor-pointer">
+                    <svg class="w-12 h-12 text-green-600 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                    </svg>
+                    <div class="font-semibold text-green-900 mb-1">Click to upload or drag and drop</div>
+                    <div class="text-sm text-gray-500">PNG, JPG up to 10MB</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ingredients & Allergens -->
+            <div class="bg-white rounded-2xl shadow-sm p-6 md:p-8">
+              <div class="flex items-center gap-3 mb-6 pb-5 border-b-2 border-gray-100">
+                <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
+                  <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                  </svg>
+                </div>
+                <h2 class="text-xl font-semibold text-green-900">Ingredients & Allergens</h2>
+              </div>
+
+              <div class="space-y-5">
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-2">
+                    Ingredients List <span class="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    [(ngModel)]="formData.ingredients"
+                    placeholder="List all ingredients separated by commas..."
+                    rows="3"
+                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none resize-none"
+                  ></textarea>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-3">Dietary Tags</label>
+                  <div class="flex flex-wrap gap-2">
+                    <button
+                      *ngFor="let option of dietaryOptions"
+                      type="button"
+                      (click)="toggleTag(option.id, 'dietaryTags')"
+                      [class]="getTagClass(option.id, 'dietaryTags')"
+                    >
+                      <span class="mr-1">{{option.icon}}</span>
+                      {{option.label}}
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-3">
+                    Allergen Information <span class="text-red-500">*</span>
+                  </label>
+                  <div class="flex flex-wrap gap-2">
+                    <button
+                      *ngFor="let allergen of allergenOptions"
+                      type="button"
+                      (click)="toggleTag(allergen, 'allergens')"
+                      [class]="getTagClass(allergen, 'allergens')"
+                    >
+                      {{allergen}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Nutrition Information -->
+            <div class="bg-white rounded-2xl shadow-sm p-6 md:p-8">
+              <div class="flex items-center gap-3 mb-6 pb-5 border-b-2 border-gray-100">
+                <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
+                  <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                  </svg>
+                </div>
+                <h2 class="text-xl font-semibold text-green-900">Nutrition Information</h2>
+              </div>
+
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div *ngFor="let field of nutritionFields">
+                  <label class="block text-sm font-semibold text-gray-700 mb-2">{{field.label}}</label>
+                  <input
+                    type="number"
+                  [(ngModel)]="formData.nutrition[field.key]"
+                    [placeholder]="field.placeholder"
+                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Airline Context -->
+            <div class="bg-white rounded-2xl shadow-sm p-6 md:p-8">
+              <div class="flex items-center gap-3 mb-6 pb-5 border-b-2 border-gray-100">
+                <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
+                  <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                  </svg>
+                </div>
+                <h2 class="text-xl font-semibold text-green-900">Airline Context (Optional)</h2>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-2">Airline Code</label>
+                  <input
+                    type="text"
+                    [(ngModel)]="formData.airline.code"
+                    placeholder="e.g., QF"
+                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-2">Airline Name</label>
+                  <input
+                    type="text"
+                    [(ngModel)]="formData.airline.name"
+                    placeholder="e.g., Qantas"
+                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-2">Route</label>
+                  <input
+                    type="text"
+                    [(ngModel)]="formData.airline.route"
+                    placeholder="e.g., Sydney → Singapore"
+                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-2">Flight Number</label>
+                  <input
+                    type="text"
+                    [(ngModel)]="formData.airline.flightNumber"
+                    placeholder="e.g., QF 81"
+                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none"
+                  />
+                </div>
+                <div class="md:col-span-2">
+                  <label class="block text-sm font-semibold text-gray-700 mb-2">Service Type</label>
+                  <select
+                    [(ngModel)]="formData.airline.serviceType"
+                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none"
+                  >
+                    <option value="">Select service type</option>
+                    <option value="main">Main Meal</option>
+                    <option value="light">Light Meal</option>
+                    <option value="snack">Snack Service</option>
+                    <option value="special">Special Request</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- HACCP & Safety -->
+            <div class="bg-white rounded-2xl shadow-sm p-6 md:p-8">
+              <div class="flex items-center gap-3 mb-6 pb-5 border-b-2 border-gray-100">
+                <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
+                  <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                  </svg>
+                </div>
+                <h2 class="text-xl font-semibold text-green-900">HACCP & Safety Instructions</h2>
+              </div>
+
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-2">
+                    Reheating Instructions <span class="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    [(ngModel)]="formData.haccp.reheating"
+                    placeholder="Provide step-by-step reheating instructions..."
+                    rows="3"
+                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none resize-none"
+                  ></textarea>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-gray-700 mb-2">Safety Notes</label>
+                  <textarea
+                    [(ngModel)]="formData.haccp.safety"
+                    placeholder="Storage temperature, handling procedures, etc."
+                    rows="3"
+                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none resize-none"
+                  ></textarea>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">IDDSI Level</label>
+                    <select
+                      [(ngModel)]="formData.haccp.iddsi"
+                      class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none"
+                    >
+                      <option value="">Select IDDSI level</option>
+                      <option value="7">Level 7 - Regular</option>
+                      <option value="6">Level 6 - Soft & Bite-Sized</option>
+                      <option value="5">Level 5 - Minced & Moist</option>
+                      <option value="4">Level 4 - Pureed</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Storage Temperature</label>
+                    <input
+                      type="text"
+                      [(ngModel)]="formData.haccp.temperature"
+                      placeholder="0-4°C (32-39°F)"
+                      class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all outline-none"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Preview Sidebar - 1 column -->
+          <div class="lg:col-span-1">
+            <div class="sticky top-6 bg-white rounded-2xl shadow-sm p-6">
+              <h3 class="text-lg font-semibold text-green-900 mb-5 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+                Live Preview
+              </h3>
+              <div class="border-2 border-gray-200 rounded-xl overflow-hidden">
+                <div class="h-44 bg-gradient-to-br from-green-300 to-green-600 flex items-center justify-center">
+                  <svg class="w-16 h-16 text-white opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                </div>
+                <div class="p-5">
+                  <div class="font-semibold text-lg text-green-900 mb-3">
+                    {{formData.dishName || 'Your Dish Name'}}
+                  </div>
+                  <div class="text-sm text-gray-500 mb-3">
+                    {{formData.mealType || 'Meal Type'}} • {{formData.serviceClass || 'Service Class'}}
+                  </div>
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      *ngFor="let tag of formData.dietaryTags"
+                      class="px-3 py-1 bg-green-100 text-green-700 rounded-lg text-xs font-semibold"
+                    >
+                      {{getDietaryLabel(tag)}}
+                    </span>
+                    <span
+                      *ngIf="formData.dietaryTags.length === 0"
+                      class="px-3 py-1 bg-gray-100 text-gray-500 rounded-lg text-xs font-semibold"
+                    >
+                      Preview Tags
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Bar -->
+        <div class="mt-6 bg-white rounded-2xl shadow-sm p-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <button class="w-full sm:w-auto px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold text-gray-700 hover:border-green-500 hover:bg-green-50 transition-all flex items-center justify-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+            Cancel
+          </button>
+          <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <button class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold text-gray-700 hover:border-green-500 hover:bg-green-50 transition-all flex items-center justify-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+              </svg>
+              Save as Draft
+            </button>
+            <button (click)="createDish()" class="px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-xl font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              Create Dish
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
