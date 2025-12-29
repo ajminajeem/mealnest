@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -33,6 +33,17 @@ interface NavGroup {
   styleUrl: './sidebar.css',
 })
 export class Sidebar {
+   /** 🔥 Notify layout to close sidebar (mobile) */
+  @Output() closeSidebar = new EventEmitter<void>();
+
+  /** 🔥 Collapse state */
+  isCollapsed = false;
+
+  /** 🔥 Toggle collapse */
+  toggleCollapse() {
+    this.isCollapsed = !this.isCollapsed;
+  }
+
   navGroups: NavGroup[] = [
     {
       title: 'Main',
@@ -73,9 +84,17 @@ export class Sidebar {
 
   ];
 
-  userInfo = {
+   userInfo = {
     name: 'Site Admin',
     role: 'DNATA Sydney',
     initials: 'SA'
   };
+
+  /** 🔥 Close drawer on mobile when link clicked */
+  onNavClick() {
+    if (window.innerWidth < 768) {
+      this.closeSidebar.emit();
+    }
+  }
+
 }

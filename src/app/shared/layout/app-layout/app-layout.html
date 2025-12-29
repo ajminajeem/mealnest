@@ -1,17 +1,52 @@
-<div class="flex h-screen bg-gradient-to-br from-slate-50 to-emerald-50 relative overflow-hidden">
+<mat-sidenav-container >
 
-  <!-- Geometric background pattern -->
-  <div class="fixed inset-0 pointer-events-none z-0"
-       style="background-image: repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(45, 155, 110, 0.02) 50px, rgba(45, 155, 110, 0.02) 51px), repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(45, 155, 110, 0.02) 50px, rgba(45, 155, 110, 0.02) 51px);">
-  </div>
+  <!-- SIDEBAR -->
+  <mat-sidenav
+    #drawer
+      class="!w-[280px] !p-0 bg-transparent"
+    [mode]="isMobile ? 'over' : 'side'"
+    [opened]="!isMobile"
+    fixedInViewport>
 
-  <!-- Sidebar Component -->
-  <app-sidebar></app-sidebar>
+    <app-sidebar (closeSidebar)="drawer.close()"></app-sidebar>
 
-  <!-- Main Content Area -->
-<main class="flex-1 p-10 relative z-10 animate-fade-in overflow-y-auto">
-  <app-header></app-header>
-  <router-outlet></router-outlet>
-</main>
+  </mat-sidenav>
 
-</div>
+  <!-- MAIN CONTENT -->
+  <mat-sidenav-content>
+
+    <div class="flex h-screen bg-gradient-to-br from-slate-50 to-emerald-50 relative overflow-hidden">
+
+      <!-- Background pattern -->
+      <div
+        class="fixed inset-0 pointer-events-none z-0"
+        style="
+          background-image:
+          repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(45, 155, 110, 0.02) 50px, rgba(45, 155, 110, 0.02) 51px),
+          repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(45, 155, 110, 0.02) 50px, rgba(45, 155, 110, 0.02) 51px);
+        ">
+      </div>
+
+      <!-- CONTENT -->
+      <main class="flex-1 p-10 relative z-10 overflow-y-auto">
+
+        <!-- MOBILE HEADER -->
+        <div class="md:hidden mb-4">
+          <button
+            mat-icon-button
+            class="bg-white shadow rounded-lg"
+            (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </div>
+
+        <app-header></app-header>
+        <router-outlet></router-outlet>
+
+      </main>
+
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

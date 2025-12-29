@@ -112,9 +112,9 @@ width: 310px;
   font-weight: 600;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 925px) {
   .step::after {
-    width: calc(100% + 40px);
+    width: 150px;
   }
 }
 
