@@ -1,25 +1,20 @@
-<mat-sidenav-container >
+<mat-sidenav-container class="h-screen">
 
-  <!-- SIDEBAR -->
   <mat-sidenav
     #drawer
-      class="!w-[280px] !p-0 bg-transparent"
+    class="!w-[280px] !p-0 bg-transparent"
     [mode]="isMobile ? 'over' : 'side'"
-    [opened]="!isMobile"
-    fixedInViewport>
+    [opened]="!isMobile">
 
     <app-sidebar (closeSidebar)="drawer.close()"></app-sidebar>
-
   </mat-sidenav>
 
-  <!-- MAIN CONTENT -->
   <mat-sidenav-content>
 
-    <div class="flex h-screen bg-gradient-to-br from-slate-50 to-emerald-50 relative overflow-hidden">
+    <div class="flex min-h-screen bg-gradient-to-br from-slate-50 to-emerald-50 relative">
 
-      <!-- Background pattern -->
-      <div
-        class="fixed inset-0 pointer-events-none z-0"
+      <!-- Background -->
+      <div class="fixed inset-0 pointer-events-none z-0"
         style="
           background-image:
           repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(45, 155, 110, 0.02) 50px, rgba(45, 155, 110, 0.02) 51px),
@@ -27,15 +22,10 @@
         ">
       </div>
 
-      <!-- CONTENT -->
       <main class="flex-1 p-10 relative z-10 overflow-y-auto">
 
-        <!-- MOBILE HEADER -->
         <div class="md:hidden mb-4">
-          <button
-            mat-icon-button
-            class="bg-white shadow rounded-lg"
-            (click)="drawer.toggle()">
+          <button mat-icon-button class="bg-white shadow rounded-lg" (click)="drawer.toggle()">
             <mat-icon>menu</mat-icon>
           </button>
         </div>
