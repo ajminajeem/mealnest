@@ -1,0 +1,109 @@
+<div>
+    <!-- Header -->
+    <header class="mb-10 animate-slide-down">
+        <div class="grid gap-6 grid-cols-1 lg:grid-cols-[1fr_auto] items-start">
+            <!-- Left Content -->
+            <div>
+                <app-breadcrumbs [items]="breadcrumbs"></app-breadcrumbs>
+
+                <h1 class="font-['Outfit'] text-3xl sm:text-4xl lg:text-[32px] font-semibold text-emerald-900 mt-6">
+                    Global Settings
+                </h1>
+
+                <p class="text-gray-500 mt-4 max-w-2xl">
+                    Configure enterprise-wide settings, branding, and system preferences
+                </p>
+            </div>
+        </div>
+    </header>
+    <div class="bg-white rounded-2xl p-8 shadow-smGreen mb-6">
+        <!-- Header -->
+        <div class="mb-7 pb-5 border-b border-gray-300">
+            <h2 class="font-heading text-2xl font-semibold text-[#185031] mb-2 flex items-center gap-3">
+                <span class="w-10 h-10 rounded-xl text-green-600 flex items-center justify-center text-lg ">
+                    <i class="fas fa-font"></i>
+                </span>
+                Typography Settings
+            </h2>
+
+            <p class="text-sm text-gray-400 mt-1">Customize font families and text sizes</p>
+        </div>
+
+        <!-- Form -->
+        <div class="grid md:grid-cols-1 lg:grid-cols-2 lg:gap-6">
+            <!-- Primary Font -->
+            <div class="flex flex-col gap-1">
+                <label class="text-sm font-semibold text-gray-700">Primary Font Family</label>
+                <div class="text-xs text-gray-400">Used for body text and general content</div>
+
+                <select
+                    class="w-full px-4 py-3 border border-gray-300 rounded-xl text-[15px] focus:outline-none focus:ring-2 focus:ring-[#4caf78] bg-white">
+                    <option>DM Sans (Default)</option>
+                    <option>Inter</option>
+                    <option>Roboto</option>
+                    <option>Open Sans</option>
+                    <option>Lato</option>
+                    <option>Poppins</option>
+                </select>
+            </div>
+
+            <!-- Heading Font -->
+            <div class="flex flex-col gap-1">
+                <label class="text-sm font-semibold text-gray-700">Heading Font Family</label>
+                <div class="text-xs text-gray-400">Used for titles and headings</div>
+
+                <select
+                    class="w-full px-4 py-3 border border-gray-300 rounded-xl text-[15px] focus:outline-none focus:ring-2 focus:ring-[#4caf78] bg-white">
+                    <option>Outfit (Default)</option>
+                    <option>Montserrat</option>
+                    <option>Raleway</option>
+                    <option>Playfair Display</option>
+                    <option>Bebas Neue</option>
+                </select>
+            </div>
+
+            <!-- Base Font Size -->
+            <div class="flex flex-col gap-1">
+                <label class="text-sm font-semibold text-gray-700">Base Font Size</label>
+                <div class="text-xs text-gray-400">Default text size across the application</div>
+
+                <select
+                    class="w-full px-4 py-3 border border-gray-300 rounded-xl text-[15px] focus:outline-none focus:ring-2 focus:ring-[#4caf78] bg-white">
+                    <option>14px (Small)</option>
+                    <option selected>15px (Default)</option>
+                    <option>16px (Large)</option>
+                    <option>17px (Extra Large)</option>
+                </select>
+            </div>
+
+            <!-- Font Weight -->
+            <div class="flex flex-col gap-1">
+                <label class="text-sm font-semibold text-gray-700">Font Weight</label>
+                <div class="text-xs text-gray-400">Default font weight for body text</div>
+
+                <select
+                    class="w-full px-4 py-3 border border-gray-300 rounded-xl text-[15px] focus:outline-none focus:ring-2 focus:ring-[#4caf78] bg-white">
+                    <option>300 (Light)</option>
+                    <option selected>400 (Regular)</option>
+                    <option>500 (Medium)</option>
+                    <option>600 (Semi-Bold)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex justify-end gap-3 mt-8 pt-6 border-t border-gray-300">
+            <button
+                class="px-6 py-3 rounded-xl font-semibold border border-gray-300 bg-white text-[15px] text-gray-700 hover:border-sageGreen hover:ring-2 hover:ring-[#4caf78] transition flex items-center gap-2">
+                <i class="fas fa-undo"></i>
+                Reset to Default
+            </button>
+
+            <button
+                class="px-6 py-4 rounded-xl font-semibold text-white bg-[#4caf78] shadow hover:shadow-lg hover:-translate-y-0.5 transition flex items-center gap-2">
+                <i class="fas fa-save"></i>
+                Save Typography
+            </button>
+        </div>
+    </div>
+</div>

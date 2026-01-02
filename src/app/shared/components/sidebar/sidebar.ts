@@ -8,12 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 
-
-
-
-
-
-
 interface NavItem {
   icon: string;
   label: string;
@@ -28,12 +22,21 @@ interface NavGroup {
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterModule,FormsModule, MatSidenavModule, MatToolbarModule, MatIconModule, MatListModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule,
+    MatButtonModule,
+  ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
 })
 export class Sidebar {
-   /** 🔥 Notify layout to close sidebar (mobile) */
+  /** 🔥 Notify layout to close sidebar (mobile) */
   @Output() closeSidebar = new EventEmitter<void>();
 
   /** 🔥 Collapse state */
@@ -52,8 +55,8 @@ export class Sidebar {
         { icon: 'fas fa-utensils', label: 'Dishes', route: '/dishes' },
         { icon: 'fas fa-layer-group', label: 'Batches', route: '/batch-details' },
         { icon: 'fas fa-print', label: 'Print Labels', route: '/print-labels' },
-        { icon: 'fas fa-print', label: 'Print Counter', route: '/print-counter' }
-      ]
+        { icon: 'fas fa-print', label: 'Print Counter', route: '/print-counter' },
+      ],
     },
     {
       title: 'Management',
@@ -61,25 +64,25 @@ export class Sidebar {
         { icon: 'fas fa-building', label: 'Sites', route: '/sites' },
         { icon: 'fas fa-users', label: 'Users & Roles', route: '/users' },
         { icon: 'fas fa-qrcode', label: 'QR Codes', route: '/qr-code-view' },
-        { icon: 'fas fa-history', label: 'Version History', route: '/version-history' }
-      ]
+        { icon: 'fas fa-history', label: 'Version History', route: '/version-history' },
+      ],
     },
     {
       title: 'Reports',
       items: [
         { icon: 'fas fa-file-alt', label: 'Batch Print Log', route: '/batch-log' },
         { icon: 'fas fa-chart-bar', label: 'Usage Reports', route: '/usage-reports' },
-        { icon: 'fas fa-history', label: 'User Activity', route: '/user-activity' }
-      ]
+        { icon: 'fas fa-history', label: 'User Activity', route: '/user-activity' },
+      ],
     },
-    
+
     {
       title: 'General',
       items: [
         { icon: 'fas fa-file-alt', label: 'Site Configuration', route: '/site-configuration' },
         { icon: 'fas fa-print', label: 'Printer Settings', route: '/printer-settings' },
-        { icon: 'fas fa-bell', label: 'Feature Configuration', route: '/feature-configuration' }
-      ]
+        { icon: 'fas fa-bell', label: 'Feature Configuration', route: '/feature-configuration' },
+      ],
     },
     {
       title: 'Appearance',
@@ -88,12 +91,20 @@ export class Sidebar {
       ]
     }
 
+    {
+      title: 'Appearance',
+      items: [
+        { icon: 'fa-solid fa-palette', label: 'Theme & Colors', route: '/theme-colors' },
+        { icon: 'fa fa-image', label: 'Branding', route: '/branding' },
+        { icon: 'fa fa-a', label: 'Typography', route: '/typography' },
+      ],
+    },
   ];
 
-   userInfo = {
+  userInfo = {
     name: 'Site Admin',
     role: 'DNATA Sydney',
-    initials: 'SA'
+    initials: 'SA',
   };
 
   /** 🔥 Close drawer on mobile when link clicked */
@@ -102,5 +113,4 @@ export class Sidebar {
       this.closeSidebar.emit();
     }
   }
-
 }

@@ -14,24 +14,23 @@ import { PrintLabels } from "../../print-labels/print-labels";
 import { VersionHistory } from "../../version-history/version-history";
 import { CreateDish } from "../../create-dish/create-dish";
 import { PrintCounter } from "../../print-counter/print-counter";
-import { ThemeColor } from "../../appearance/theme-color/theme-color";
 // import {ForgotPassword} from "./forgot-password/forgot-password"
 export const DASHBOARD_ROUTES: Routes = [
   {
     path: 'dashboard',
-    component: Dashboard
+    component: Dashboard,
   },
   {
     path: 'batches',
-    component: Batches
+    component: Batches,
   },
   {
     path: 'dishes',
-    component: Dishes
+    component: Dishes,
   },
   {
     path: 'reprorts',
-    component: Reports
+    component: Reports,
   },
     {
         path: 'users',
@@ -69,9 +68,5 @@ export const DASHBOARD_ROUTES: Routes = [
     },
     {path: 'print-counter',
     component: PrintCounter
-    },
-    {path: 'theme-color',
-    component: ThemeColor
     }
-
 ];
