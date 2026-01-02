@@ -81,6 +81,12 @@ export class Sidebar {
         { icon: 'fas fa-bell', label: 'Feature Configuration', route: '/feature-configuration' }
       ]
     },
+    {
+      title: 'Appearance',
+      items: [
+        { icon: 'fas fa-palette', label: 'Theme Color', route: '/theme-color' }
+      ]
+    }
 
   ];
 

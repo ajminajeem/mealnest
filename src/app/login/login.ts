@@ -13,6 +13,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -25,21 +26,42 @@ export class LoginComponent {
   password: string = '';
   rememberMe: boolean = false;
   showPassword: boolean = false;
-   constructor(private router: Router) {}
+   constructor(private router: Router, private authService: AuthService) {}
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
 
   onSubmit() {
-    console.log('Login attempt:', {
-      email: this.email,
-      password: this.password,
-      rememberMe: this.rememberMe
-    });
-     this.router.navigate(['/dashboard']);
-    // Add your login logic here
+  if (!this.email || !this.password) {
+    return;
   }
+
+  const payload = {
+    email: this.email,
+    password: this.password,
+    remember_me: this.rememberMe
+  };
+
+  this.authService.login(payload).subscribe({
+    next: (res: any) => {
+      // Save token
+      if (this.rememberMe) {
+        localStorage.setItem('token', res.token);
+      } else {
+        sessionStorage.setItem('token', res.token);
+      }
+
+      // Navigate after success
+      this.router.navigate(['/dashboard']);
+    },
+    error: (err) => {
+      console.error('Login failed', err);
+      alert(err.error?.message || 'Invalid login credentials');
+    }
+  });
+}
+
 
   onForgotPassword() {
     console.log('Forgot password clicked');
