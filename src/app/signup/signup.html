@@ -1,0 +1,148 @@
+<div class="page-wrapper">
+  <!-- Background decorations -->
+  <div class="bg-decoration bg-decoration-1"></div>
+  <div class="bg-decoration bg-decoration-2"></div>
+  <div class="bg-decoration bg-decoration-3"></div>
+
+  <!-- Page container -->
+  <div class="signup-container">
+    <!-- signup Card -->
+    <div class="signup-card">
+      <!-- Header -->
+      <div class="signup-header">
+        <div class="text-center">
+          <div class="flex items-center justify-center mb-6">
+            <div class="logo-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <h1 class="ml-3 text-3xl font-bold">
+              <span class="text-gray-800">MealNest</span>
+              <span class="text-emerald-500"> Tag</span>
+            </h1>
+          </div>
+
+          <h2 class="signup-title">Sign up</h2>
+          <p class="signup-subtitle">Sign up to create your meal management system</p>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="signup-body">
+        <form (ngSubmit)="onSubmit()" class="signup-form">
+          <!-- fname -->
+          <div class="form-group">
+            <label for="fname">First Name</label>
+
+            <div class="input-wrapper">
+              <input
+                type="text"
+                id="fname"
+                name="fname"
+                [(ngModel)]="fname"
+                placeholder="Enter your first name"
+                required
+              />
+              <i class="fas fa-envelope input-icon"></i>
+            </div>
+          </div>
+          <!-- phone -->
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+
+            <div class="input-wrapper">
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                [(ngModel)]="phone"
+                placeholder="Enter your phone number"
+                maxlength="10"
+                required
+              />
+              <i class="fas fa-envelope input-icon"></i>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">Email Address</label>
+
+            <div class="input-wrapper">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                [(ngModel)]="email"
+                placeholder="Enter your email"
+                required
+              />
+              <i class="fas fa-envelope input-icon"></i>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label for="password">Password</label>
+
+            <div class="input-wrapper">
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                id="password"
+                name="password"
+                [(ngModel)]="password"
+                placeholder="Enter your password"
+                required
+              />
+              <i class="fas fa-lock input-icon"></i>
+
+              <button type="button" class="password-toggle" (click)="togglePasswordVisibility()">
+                <i class="fas fa-eye" id="toggleIcon"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- confirm Password -->
+          <div class="form-group">
+            <label for="c_password">Confirm Password</label>
+
+            <div class="input-wrapper">
+              <input
+                [type]="showConfirmPassword ? 'text' : 'password'"
+                id="c_password"
+                name="c_password"
+                [(ngModel)]="c_password"
+                placeholder="Enter your password again"
+                required
+              />
+              <i class="fas fa-lock input-icon"></i>
+
+              <button
+                type="button"
+                class="password-toggle"
+                (click)="toggleConfirmPasswordVisibility()"
+              >
+                <i class="fas fa-eye" id="toggleIcon"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Options -->
+          <button type="submit" class="btn-signup pt-20">
+            <span>Sign Up</span>
+            <i class="fas fa-arrow-right"></i>
+          </button>
+
+          <!-- Submit -->
+        </form>
+      </div>
+
+      <!-- Footer -->
+      <div class="signup-footer">
+        <p class="signup-prompt text-gray-500">
+          Facing issue in creating account?
+          <a class="text-green-700" href="#">Contact your administrator</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

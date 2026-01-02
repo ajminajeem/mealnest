@@ -1,5 +1,4 @@
 <div class="page-wrapper">
-
   <!-- Background decorations -->
   <div class="bg-decoration bg-decoration-1"></div>
   <div class="bg-decoration bg-decoration-2"></div>
@@ -7,18 +6,15 @@
 
   <!-- Page container -->
   <div class="login-container">
-
     <!-- Login Card -->
     <div class="login-card">
-
       <!-- Header -->
       <div class="login-header">
-        <div class="text-center ">
-
+        <div class="text-center">
           <div class="flex items-center justify-center mb-6">
-           <div class="logo-icon">
-                        <i class="fas fa-leaf"></i>
-                    </div>
+            <div class="logo-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
             <h1 class="ml-3 text-3xl font-bold">
               <span class="text-gray-800">MealNest</span>
               <span class="text-emerald-500"> Tag</span>
@@ -26,94 +22,65 @@
           </div>
 
           <h2 class="login-title">Welcome Back</h2>
-          <p class="login-subtitle">
-            Sign in to access your meal management system
-          </p>
-
+          <p class="login-subtitle">Sign in to access your meal management system</p>
         </div>
       </div>
 
       <!-- Body -->
       <div class="login-body">
-      <form (ngSubmit)="onSubmit()" class="login-form">
+        <form (ngSubmit)="onSubmit()" class="login-form">
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">Email Address</label>
 
-  <!-- Email -->
-  <div class="form-group">
-    <label for="email">Email Address</label>
+            <div class="input-wrapper">
+              <input type="email" id="email" name="email" [(ngModel)]="email" placeholder="Enter your email" required />
+              <i class="fas fa-envelope input-icon"></i>
+            </div>
+          </div>
 
-    <div class="input-wrapper">
-   
+          <!-- Password -->
+          <div class="form-group">
+            <label for="password">Password</label>
 
-      <input
-        type="email"
-        id="email"
-        name="email"
-        [(ngModel)]="email"
-        placeholder="Enter your email"
-        required
-      />
-      <i class="fas fa-envelope input-icon"></i>
-    </div>
-  </div>
+            <div class="input-wrapper">
+              <input [type]="showPassword ? 'text' : 'password'" id="password" name="password" [(ngModel)]="password"
+                placeholder="Enter your password" required />
+              <i class="fas fa-lock input-icon"></i>
 
-  <!-- Password -->
-  <div class="form-group">
-    <label for="password">Password</label>
+              <button type="button" class="password-toggle" (click)="togglePasswordVisibility()">
+                <i class="fas fa-eye" id="toggleIcon"></i>
+              </button>
+            </div>
+          </div>
+          <div class="form-options">
+            <div class="remember-me">
+              <input type="checkbox" id="remember" />
+              <label for="remember">Remember me</label>
+            </div>
 
-    <div class="input-wrapper">
-  
+            <a href="/forgot-password" class="forgot-password">Forgot password?</a>
+          </div>
 
-      <input
-        [type]="showPassword ? 'text' : 'password'"
-        id="password"
-        name="password"
-        [(ngModel)]="password"
-        placeholder="Enter your password"
-        required
-      />
-      <i class="fas fa-lock input-icon"></i>
+          <!-- Options -->
+          <button type="submit" class="btn-login pt-20">
+            <span>Sign In</span>
+            <i class="fas fa-arrow-right"></i>
+          </button>
 
-      <button
-        type="button"
-        class="password-toggle"
-        (click)="togglePasswordVisibility()"
-      >
-        <i class="fas fa-eye" id="toggleIcon"></i>
-      </button>
-    </div>
-  </div>
-<div class="form-options">
-    <div class="remember-me">
-        <input type="checkbox" id="remember">
-        <label for="remember">Remember me</label>
-    </div>
-
-    <a href="#" class="forgot-password">Forgot password?</a>
-</div>
-
-  <!-- Options -->
-   <button type="submit" class="btn-login pt-20">
-                        <span>Sign In</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-
-  <!-- Submit -->
-
-
-</form>
-
+          <!-- Submit -->
+        </form>
       </div>
 
       <!-- Footer -->
       <div class="login-footer">
-                <p class="signup-prompt text-gray-500">
-                    Don't have an account? <a class="text-green-700" href="#">Contact your administrator</a>
-                </p>
-            </div>
-
+        <p class="signup-prompt text-gray-500">
+          Don't have an account? <a class="text-green-700 " href="/signup">Sign up</a>
+        </p>
+      </div>
     </div>
   </div>
-    <!-- <div class="features">
+  <!-- <div class="features">
             <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fas fa-qrcode"></i>
