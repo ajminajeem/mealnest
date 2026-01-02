@@ -15,6 +15,8 @@ import { VersionHistory } from '../../version-history/version-history';
 import { CreateDish } from '../../create-dish/create-dish';
 import { PrintCounter } from '../../print-counter/print-counter';
 import { ThemeColors } from '../../global-settings/theme-colors/theme-colors';
+import { Branding } from '../../global-settings/branding/branding';
+import { Typography } from '../../global-settings/typography/typography';
 // import {ForgotPassword} from "./forgot-password/forgot-password"
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -65,6 +67,6 @@ export const DASHBOARD_ROUTES: Routes = [
   { path: 'create-dish', component: CreateDish },
   { path: 'print-counter', component: PrintCounter },
   { path: 'theme-colors', component: ThemeColors },
-  { path: 'theme-colors', component: ThemeColors },
-  { path: 'theme-colors', component: ThemeColors },
+  { path: 'branding', component: Branding },
+  { path: 'typography', component: Typography },
 ];
