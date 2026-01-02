@@ -1,0 +1,175 @@
+<div>
+    <!-- Header -->
+    <header class="mb-10 animate-slide-down">
+        <div class="grid gap-6 grid-cols-1 lg:grid-cols-[1fr_auto] items-start">
+            <!-- Left Content -->
+            <div>
+                <app-breadcrumbs [items]="breadcrumbs"></app-breadcrumbs>
+
+                <h1 class="font-['Outfit'] text-3xl sm:text-4xl lg:text-[42px] font-semibold text-emerald-900 mt-6">
+                    Global Settings
+                </h1>
+
+                <p class="text-gray-500 mt-4 max-w-2xl">
+                    Configure enterprise-wide settings, branding, and system preferences
+                </p>
+            </div>
+        </div>
+
+        <!-- Theme & Color Customization -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm max-w-full">
+            <!-- Header -->
+            <div class="mb-7 pb-5 border-b-2 border-gray-300">
+                <h2 class="text-2xl font-semibold text-[#39A372] flex items-center">
+                    <div class="w-10 h-10 rounded-xl text-sage flex items-center justify-center text-lg">
+                        <i class="fas fa-palette text-[#39A372]"></i>
+                    </div>
+                    Theme & Color Customization
+                </h2>
+
+                <p class="text-md text-gray-400 mt-1">
+                    Customize the visual appearance of MealNest Tag across all sites
+                </p>
+            </div>
+
+            <!-- Theme Presets -->
+            <div class="mb-8">
+                <div class="text-lg font-semibold text-[#39A372] mb-5">Quick Theme Presets</div>
+
+                <div class="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-6">
+                    <div *ngFor="let p of presets" (click)="selectPreset(p.name)" [ngClass]="
+              selectedPreset === p.name
+                ? 'border-[#4caf78] ring-1 ring-[#4caf78]'
+                : 'border-gray-200 hover:border-2 hover:border-[#4caf78]'
+            " class="p-4 border-1 rounded-xl cursor-pointer hover:-translate-y-0.5 hover:shadow transition text-center">
+                        <div class="flex gap-1 justify-center mb-3">
+                            <div *ngFor="let c of p.colors" class="w-7 h-7 rounded-md" [style.background]="c"></div>
+                        </div>
+
+                        <div class="text-sm font-medium">
+                            {{ p.name }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Custom Colors -->
+            <div class="mb-8">
+                <div class="text-lg font-semibold text-[#39A372] mb-5">Custom Colors</div>
+
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-medium">Primary Color</label>
+                        <div class="text-xs text-gray-400 -mt-1">
+                            Main brand color used for buttons and accents
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <input type="color" [(ngModel)]="primaryColor"
+                                class="w-[60px] h-[50px] font-medium border-2 border-gray-200 focus:border-[#4caf78] rounded-lg p-1 cursor-pointer" />
+                            <input type="text" [(ngModel)]="primaryColor"
+                                class="flex-1 border-2 border-gray-200 focus:border-[#4caf78] rounded-xl px-4 py-3 outline-none uppercase" />
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-medium">Secondary Color</label>
+                        <div class="text-xs text-gray-400 -mt-1">
+                            Supporting color for highlights and hover states
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <input type="color" [(ngModel)]="secondaryColor"
+                                class="w-[60px] h-[50px] font-medium border-2 border-gray-200 focus:border-[#4caf78] rounded-lg p-1 cursor-pointer" />
+                            <input type="text" [(ngModel)]="secondaryColor"
+                                class="flex-1 border-2 border-gray-200 focus:border-[#4caf78] rounded-xl px-4 py-3 outline-none uppercase" />
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-medium">Accent Color</label>
+                        <div class="text-xs text-gray-400 -mt-1">
+                            Used for warnings and special notifications
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <input type="color" [(ngModel)]="accentColor"
+                                class="w-[60px] h-[50px] font-medium border-2 border-gray-200 focus:border-[#4caf78] rounded-lg p-1 cursor-pointer" />
+                            <input type="text" [(ngModel)]="accentColor"
+                                class="flex-1 border-2 border-gray-200 focus:border-[#4caf78] rounded-xl px-4 py-3 outline-none uppercase" />
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-medium">Success Color</label>
+                        <div class="text-xs text-gray-400 -mt-1">
+                            Indicates successful actions and positive status
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <input type="color" [(ngModel)]="successColor"
+                                class="w-[60px] h-[50px] font-medium border-2 border-gray-200 focus:border-[#4caf78] rounded-lg p-1 cursor-pointer" />
+                            <input type="text" [(ngModel)]="successColor"
+                                class="flex-1 border-2 border-gray-200 focus:border-[#4caf78] rounded-xl px-4 py-3 outline-none uppercase" />
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-medium">Background Color</label>
+                        <div class="text-xs text-gray-400 -mt-1">Main background gradient start color</div>
+                        <div class="flex items-center gap-3">
+                            <input type="color" [(ngModel)]="backgroundColor"
+                                class="w-[60px] h-[50px] font-medium border-2 border-gray-200 focus:border-[#4caf78] rounded-lg p-1 cursor-pointer" />
+                            <input type="text" [(ngModel)]="backgroundColor"
+                                class="flex-1 border-2 border-gray-200 focus:border-[#4caf78] rounded-xl px-4 py-3 outline-none uppercase" />
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-medium">Background Gradient End</label>
+
+                        <div class="text-xs text-gray-400 -mt-1">
+                            Main background gradient end color
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <input type="color" [(ngModel)]="backgroundGradientEnd"
+                                class="w-[60px] h-[50px] font-medium border-2 border-gray-200 focus:border-[#4caf78] rounded-lg p-1 cursor-pointer" />
+
+                            <input type="text" [(ngModel)]="backgroundGradientEnd"
+                                class="flex-1 border-2 border-gray-200 focus:border-[#4caf78] rounded-xl px-4 py-3 outline-none uppercase" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Preview -->
+                <div class="flex gap-3 mt-5 flex-wrap">
+                    <div
+                        class="flex-1 min-w-[120px] p-5 rounded-lg text-white font-semibold text-sm text-center bg-[#2d9b6e]">
+                        Primary Color
+                    </div>
+                    <div
+                        class="flex-1 min-w-[120px] p-5 rounded-lg text-white font-semibold text-sm text-center bg-[#4caf78]">
+                        Secondary Color
+                    </div>
+                    <div
+                        class="flex-1 min-w-[120px] p-5 rounded-lg text-white font-semibold text-sm text-center bg-[#ff9f5a]">
+                        Accent Color
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex justify-end gap-3 pt-7 border-t-2 border-gray-200">
+                <button
+                    class="px-7 py-3 rounded-xl font-semibold border-2 border-gray-200 hover:border-[#4caf78] transition flex items-center gap-2">
+                    <i class="fas fa-undo"></i>
+                    Reset to Default
+                </button>
+
+                <button
+                    class="px-7 py-3 rounded-xl font-semibold text-white bg-[#4caf78] shadow-md hover:shadow-lg hover:-translate-y-0.5 transition flex items-center gap-2">
+                    <i class="fas fa-save"></i>
+                    Save Theme
+                </button>
+            </div>
+        </div>
+    </header>
+</div>
